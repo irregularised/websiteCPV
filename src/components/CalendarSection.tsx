@@ -1,38 +1,36 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Calendar, Clock, MapPin, Users } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Plus } from 'lucide-react';
+import { useState } from 'react';
 
 const CalendarSection = () => {
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: "Care Provider Training Workshop",
-      date: "2024-06-25",
-      time: "10:00 AM - 2:00 PM",
-      location: "Community Center",
-      type: "Training",
-      attendees: 45
-    },
-    {
-      id: 2,
-      title: "Weekly Vacancy Updates",
-      date: "2024-06-27",
-      time: "9:00 AM",
-      location: "Online",
-      type: "Update",
-      attendees: 120
-    },
-    {
-      id: 3,
-      title: "Disability Awareness Seminar",
-      date: "2024-06-30",
-      time: "1:00 PM - 4:00 PM",
-      location: "Main Hall",
-      type: "Seminar",
-      attendees: 80
-    }
+  const [events, setEvents] = useState<any[]>([]);
+  const [isStaffMode, setIsStaffMode] = useState(false);
+
+  // Empty calendar - events will be added by staff only
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
   ];
+
+  const calendarDays = [];
+  
+  // Add empty cells for days before the first day of the month
+  for (let i = 0; i < firstDayOfMonth; i++) {
+    calendarDays.push(null);
+  }
+  
+  // Add days of the month
+  for (let day = 1; day <= daysInMonth; day++) {
+    calendarDays.push(day);
+  }
 
   return (
     <section id="calendar" className="py-20 bg-pale-blue/20">
@@ -53,9 +51,16 @@ const CalendarSection = () => {
             <div className="lg:col-span-1">
               <Card className="bg-snow-white border-pale-blue shadow-lg">
                 <CardHeader>
-                  <CardTitle className="flex items-center space-x-2 text-steel-blue">
-                    <Calendar className="w-5 h-5 text-rose-pink" />
-                    <span>June 2024</span>
+                  <CardTitle className="flex items-center justify-between text-steel-blue">
+                    <div className="flex items-center space-x-2">
+                      <Calendar className="w-5 h-5 text-rose-pink" />
+                      <span>{monthNames[currentMonth]} {currentYear}</span>
+                    </div>
+                    {isStaffMode && (
+                      <Button size="sm" className="bg-mint-green hover:bg-mint-green/90 text-snow-white">
+                        <Plus className="w-4 h-4" />
+                      </Button>
+                    )}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -65,16 +70,16 @@ const CalendarSection = () => {
                         {day}
                       </div>
                     ))}
-                    {Array.from({ length: 30 }, (_, i) => i + 1).map((date) => (
+                    {calendarDays.map((date, index) => (
                       <div 
-                        key={date} 
+                        key={index} 
                         className={`p-2 text-sm rounded cursor-pointer transition-colors ${
-                          [25, 27, 30].includes(date) 
-                            ? 'bg-rose-pink text-snow-white font-semibold' 
-                            : 'hover:bg-pale-blue text-steel-blue'
+                          date 
+                            ? 'hover:bg-pale-blue text-steel-blue' 
+                            : ''
                         }`}
                       >
-                        {date}
+                        {date || ''}
                       </div>
                     ))}
                   </div>
@@ -87,57 +92,83 @@ const CalendarSection = () => {
 
             {/* Events List */}
             <div className="lg:col-span-2">
-              <div className="space-y-4">
-                {upcomingEvents.map((event) => (
-                  <Card key={event.id} className="bg-snow-white border-pale-blue shadow-lg hover:shadow-xl transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col md:flex-row md:items-center justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-2 mb-2">
-                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                              event.type === 'Training' ? 'bg-rose-pink/20 text-rose-pink' :
-                              event.type === 'Update' ? 'bg-mint-green/20 text-mint-green' :
-                              'bg-steel-blue/20 text-steel-blue'
-                            }`}>
-                              {event.type}
-                            </span>
+              {events.length === 0 ? (
+                <Card className="bg-snow-white border-pale-blue shadow-lg">
+                  <CardContent className="p-12 text-center">
+                    <Calendar className="w-16 h-16 text-steel-blue/30 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold text-steel-blue mb-2">No Events Scheduled</h3>
+                    <p className="text-steel-blue/60 mb-6">
+                      Our staff will add upcoming events and opportunities here. Check back soon!
+                    </p>
+                    {isStaffMode && (
+                      <Button className="bg-rose-pink hover:bg-rose-pink/90 text-snow-white">
+                        <Plus className="w-4 h-4 mr-2" />
+                        Add Event
+                      </Button>
+                    )}
+                  </CardContent>
+                </Card>
+              ) : (
+                <div className="space-y-4">
+                  {events.map((event) => (
+                    <Card key={event.id} className="bg-snow-white border-pale-blue shadow-lg hover:shadow-xl transition-shadow">
+                      <CardContent className="p-6">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between">
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-2 mb-2">
+                              <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                                event.type === 'Training' ? 'bg-rose-pink/20 text-rose-pink' :
+                                event.type === 'Update' ? 'bg-mint-green/20 text-mint-green' :
+                                'bg-steel-blue/20 text-steel-blue'
+                              }`}>
+                                {event.type}
+                              </span>
+                            </div>
+                            <h3 className="text-xl font-semibold text-steel-blue mb-3">
+                              {event.title}
+                            </h3>
+                            <div className="grid md:grid-cols-3 gap-4 text-sm text-steel-blue/80">
+                              <div className="flex items-center space-x-2">
+                                <Calendar className="w-4 h-4 text-rose-pink" />
+                                <span>{event.date}</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Clock className="w-4 h-4 text-rose-pink" />
+                                <span>{event.time}</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <MapPin className="w-4 h-4 text-rose-pink" />
+                                <span>{event.location}</span>
+                              </div>
+                            </div>
                           </div>
-                          <h3 className="text-xl font-semibold text-steel-blue mb-3">
-                            {event.title}
-                          </h3>
-                          <div className="grid md:grid-cols-3 gap-4 text-sm text-steel-blue/80">
-                            <div className="flex items-center space-x-2">
-                              <Calendar className="w-4 h-4 text-rose-pink" />
-                              <span>{new Date(event.date).toLocaleDateString('en-US', { 
-                                month: 'short', 
-                                day: 'numeric' 
-                              })}</span>
+                          <div className="mt-4 md:mt-0 md:ml-6 flex items-center space-x-4">
+                            <div className="flex items-center space-x-2 text-sm text-steel-blue/80">
+                              <Users className="w-4 h-4 text-mint-green" />
+                              <span>{event.attendees} registered</span>
                             </div>
-                            <div className="flex items-center space-x-2">
-                              <Clock className="w-4 h-4 text-rose-pink" />
-                              <span>{event.time}</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <MapPin className="w-4 h-4 text-rose-pink" />
-                              <span>{event.location}</span>
-                            </div>
+                            <Button size="sm" className="bg-rose-pink hover:bg-rose-pink/90 text-snow-white">
+                              Register
+                            </Button>
                           </div>
                         </div>
-                        <div className="mt-4 md:mt-0 md:ml-6 flex items-center space-x-4">
-                          <div className="flex items-center space-x-2 text-sm text-steel-blue/80">
-                            <Users className="w-4 h-4 text-mint-green" />
-                            <span>{event.attendees} registered</span>
-                          </div>
-                          <Button size="sm" className="bg-rose-pink hover:bg-rose-pink/90 text-snow-white">
-                            Register
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
             </div>
+          </div>
+
+          {/* Staff Mode Toggle (for demo purposes) */}
+          <div className="mt-8 text-center">
+            <Button 
+              variant="outline" 
+              onClick={() => setIsStaffMode(!isStaffMode)}
+              className="text-steel-blue border-steel-blue hover:bg-steel-blue hover:text-snow-white"
+            >
+              {isStaffMode ? 'Exit Staff Mode' : 'Staff Mode (Demo)'}
+            </Button>
           </div>
         </div>
       </div>

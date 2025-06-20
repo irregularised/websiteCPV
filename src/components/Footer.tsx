@@ -1,100 +1,173 @@
 
-import { Calendar, BookOpen, CreditCard, Award, Users, Home } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
+  const socialLinks = [
+    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Instagram, href: '#', label: 'Instagram' }
+  ];
+
+  const quickLinks = [
+    { title: 'Learning Hub', href: '#learning' },
+    { title: 'Events Calendar', href: '#calendar' },
+    { title: 'Flourish Card', href: '#flourish' },
+    { title: 'Recognition', href: '#recognition' },
+    { title: 'Staff Portal', href: '#portal' }
+  ];
+
+  const resources = [
+    { title: 'FLOURISH E-Learning', href: '#' },
+    { title: 'Canvas Portal', href: '#', external: true },
+    { title: 'Training Materials', href: '#' },
+    { title: 'Career Support', href: '#' },
+    { title: 'Accessibility Guide', href: '#' }
+  ];
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.querySelector(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-steel-blue text-snow-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4">
+        {/* Main Footer Content */}
+        <div className="py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div className="md:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-rose-pink to-mint-green rounded-lg flex items-center justify-center">
-                <span className="text-snow-white font-bold text-xl">C</span>
+          <div className="lg:col-span-1">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-12 h-12 bg-gradient-to-br from-rose-pink via-mint-green to-snow-white rounded-xl flex items-center justify-center">
+                <span className="text-steel-blue font-bold text-xl">C</span>
               </div>
-              <span className="text-2xl font-bold">CareConnect</span>
+              <div>
+                <span className="text-2xl font-bold">CareConnect</span>
+                <p className="text-xs text-snow-white/60 -mt-1">Professional Platform</p>
+              </div>
             </div>
-            <p className="text-snow-white/80 mb-4">
-              Connecting care providers and candidates through education, opportunities, and community.
+            <p className="text-snow-white/80 mb-6 leading-relaxed">
+              Connecting care providers and candidates through educational excellence, 
+              professional development, and community engagement.
             </p>
-            <div className="text-sm text-snow-white/60">
-              © 2024 CareConnect Platform. All rights reserved.
+            <div className="flex space-x-4">
+              {socialLinks.map((social) => (
+                <Button
+                  key={social.label}
+                  size="sm"
+                  variant="outline"
+                  className="border-snow-white/30 text-snow-white hover:bg-snow-white hover:text-steel-blue p-2"
+                  asChild
+                >
+                  <a href={social.href} aria-label={social.label}>
+                    <social.icon className="w-4 h-4" />
+                  </a>
+                </Button>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#home" className="flex items-center space-x-2 text-snow-white/80 hover:text-snow-white transition-colors">
-                  <Home className="w-4 h-4" />
-                  <span>Home</span>
-                </a>
-              </li>
-              <li>
-                <a href="#calendar" className="flex items-center space-x-2 text-snow-white/80 hover:text-snow-white transition-colors">
-                  <Calendar className="w-4 h-4" />
-                  <span>Events Calendar</span>
-                </a>
-              </li>
-              <li>
-                <a href="#learning" className="flex items-center space-x-2 text-snow-white/80 hover:text-snow-white transition-colors">
-                  <BookOpen className="w-4 h-4" />
-                  <span>Learning Hub</span>
-                </a>
-              </li>
-              <li>
-                <a href="#flourish" className="flex items-center space-x-2 text-snow-white/80 hover:text-snow-white transition-colors">
-                  <CreditCard className="w-4 h-4" />
-                  <span>Flourish Card</span>
-                </a>
-              </li>
+            <h3 className="font-bold text-lg mb-6">Quick Links</h3>
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.title}>
+                  <button
+                    onClick={() => scrollToSection(link.href)}
+                    className="text-snow-white/80 hover:text-snow-white transition-colors text-left"
+                  >
+                    {link.title}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Learning Resources */}
+          {/* Resources */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Learning</h3>
-            <ul className="space-y-2 text-snow-white/80">
-              <li><a href="#" className="hover:text-snow-white transition-colors">FLOURISH E-Learning</a></li>
-              <li><a href="#" className="hover:text-snow-white transition-colors">Canvas Courses</a></li>
-              <li><a href="#" className="hover:text-snow-white transition-colors">Weekly Documents</a></li>
-              <li><a href="#" className="hover:text-snow-white transition-colors">Training Modules</a></li>
-              <li><a href="#" className="hover:text-snow-white transition-colors">Certification Programs</a></li>
+            <h3 className="font-bold text-lg mb-6">Resources</h3>
+            <ul className="space-y-3">
+              {resources.map((resource) => (
+                <li key={resource.title}>
+                  <a
+                    href={resource.href}
+                    className="text-snow-white/80 hover:text-snow-white transition-colors flex items-center space-x-2"
+                  >
+                    <span>{resource.title}</span>
+                    {resource.external && <ExternalLink className="w-3 h-3" />}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Support & Community */}
+          {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Community</h3>
-            <ul className="space-y-2 text-snow-white/80">
-              <li><a href="#recognition" className="hover:text-snow-white transition-colors">Awards & Recognition</a></li>
-              <li><a href="#" className="hover:text-snow-white transition-colors">Social Events</a></li>
-              <li><a href="#" className="hover:text-snow-white transition-colors">Disability Awareness</a></li>
-              <li><a href="#portal" className="hover:text-snow-white transition-colors">Staff Portal</a></li>
-              <li><a href="#" className="hover:text-snow-white transition-colors">Contact Support</a></li>
-            </ul>
+            <h3 className="font-bold text-lg mb-6">Contact Us</h3>
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <Mail className="w-5 h-5 text-rose-pink flex-shrink-0" />
+                <div>
+                  <p className="text-snow-white/80 text-sm">Email</p>
+                  <a href="mailto:info@careconnect.com" className="text-snow-white hover:text-rose-pink transition-colors">
+                    info@careconnect.com
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone className="w-5 h-5 text-rose-pink flex-shrink-0" />
+                <div>
+                  <p className="text-snow-white/80 text-sm">Phone</p>
+                  <a href="tel:+1234567890" className="text-snow-white hover:text-rose-pink transition-colors">
+                    (123) 456-7890
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <MapPin className="w-5 h-5 text-rose-pink flex-shrink-0" />
+                <div>
+                  <p className="text-snow-white/80 text-sm">Address</p>
+                  <p className="text-snow-white">
+                    123 Care Street<br />
+                    Community City, CC 12345
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-snow-white/20 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-snow-white/60 text-sm">
-              Built for care professionals • Powered by education and community
+        {/* Newsletter Signup */}
+        <div className="py-8 border-t border-snow-white/20">
+          <div className="max-w-2xl mx-auto text-center">
+            <h3 className="text-xl font-bold mb-4">Stay Updated</h3>
+            <p className="text-snow-white/80 mb-6">
+              Subscribe to receive the latest updates on courses, events, and opportunities.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                className="px-4 py-3 rounded-lg bg-snow-white/10 border border-snow-white/20 text-snow-white placeholder-snow-white/60 focus:outline-none focus:border-rose-pink flex-1 max-w-md"
+              />
+              <Button className="bg-rose-pink hover:bg-rose-pink/90 text-snow-white px-8">
+                Subscribe
+              </Button>
             </div>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-snow-white/60 hover:text-snow-white text-sm transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-snow-white/60 hover:text-snow-white text-sm transition-colors">
-                Terms of Service
-              </a>
-              <a href="#" className="text-snow-white/60 hover:text-snow-white text-sm transition-colors">
-                Accessibility
-              </a>
-            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="py-6 border-t border-snow-white/20 flex flex-col md:flex-row justify-between items-center text-sm text-snow-white/60">
+          <p>&copy; 2024 CareConnect. All rights reserved.</p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <a href="#" className="hover:text-snow-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-snow-white transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-snow-white transition-colors">Accessibility</a>
           </div>
         </div>
       </div>

@@ -1,9 +1,30 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { BookOpen, Download, ExternalLink, GraduationCap, FileText, Users } from 'lucide-react';
+import { BookOpen, Download, ExternalLink, GraduationCap, FileText, Users, Plus, Settings } from 'lucide-react';
+import { useState } from 'react';
 
 const LearningHub = () => {
+  const [isStaffMode, setIsStaffMode] = useState(false);
+  const [resources, setResources] = useState([
+    {
+      id: 1,
+      title: "Care Provider Handbook 2024",
+      type: "PDF",
+      size: "2.5 MB",
+      uploadDate: "2024-06-15",
+      downloads: 234
+    },
+    {
+      id: 2,
+      title: "Weekly Training Materials",
+      type: "ZIP",
+      size: "8.2 MB",
+      uploadDate: "2024-06-10",
+      downloads: 156
+    }
+  ]);
+
   const learningResources = [
     {
       title: "FLOURISH E-Learning",
@@ -27,7 +48,7 @@ const LearningHub = () => {
       icon: FileText,
       type: "Download",
       status: "Updated Weekly",
-      action: "Download Latest"
+      action: "Browse Resources"
     },
     {
       title: "Workforce Development",
@@ -108,8 +129,76 @@ const LearningHub = () => {
           ))}
         </div>
 
+        {/* Downloadable Resources Section */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-2xl font-bold text-steel-blue">
+              Downloadable Resources
+            </h3>
+            {isStaffMode && (
+              <Button className="bg-mint-green hover:bg-mint-green/90 text-snow-white">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Resource
+              </Button>
+            )}
+          </div>
+
+          {resources.length === 0 ? (
+            <Card className="bg-snow-white border-pale-blue shadow-lg">
+              <CardContent className="p-12 text-center">
+                <FileText className="w-16 h-16 text-steel-blue/30 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-steel-blue mb-2">No Resources Available</h3>
+                <p className="text-steel-blue/60 mb-6">
+                  Our staff will upload training materials and resources here. Check back soon!
+                </p>
+                {isStaffMode && (
+                  <Button className="bg-rose-pink hover:bg-rose-pink/90 text-snow-white">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Upload First Resource
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-6">
+              {resources.map((resource) => (
+                <Card key={resource.id} className="bg-snow-white border-pale-blue shadow-lg hover:shadow-xl transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-steel-blue mb-2">{resource.title}</h4>
+                        <div className="flex items-center space-x-4 text-sm text-steel-blue/80">
+                          <span className="px-2 py-1 bg-pale-blue text-steel-blue rounded text-xs">
+                            {resource.type}
+                          </span>
+                          <span>{resource.size}</span>
+                          <span>{resource.downloads} downloads</span>
+                        </div>
+                      </div>
+                      {isStaffMode && (
+                        <Button size="sm" variant="outline" className="ml-2">
+                          <Settings className="w-4 h-4" />
+                        </Button>
+                      )}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-steel-blue/60">
+                        Uploaded: {resource.uploadDate}
+                      </span>
+                      <Button size="sm" className="bg-mint-green hover:bg-mint-green/90 text-snow-white">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* Featured Courses Section */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto mb-12">
           <h3 className="text-2xl font-bold text-steel-blue text-center mb-8">
             Featured Courses
           </h3>
@@ -158,6 +247,17 @@ const LearningHub = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Staff Mode Toggle (for demo purposes) */}
+        <div className="text-center">
+          <Button 
+            variant="outline" 
+            onClick={() => setIsStaffMode(!isStaffMode)}
+            className="text-steel-blue border-steel-blue hover:bg-steel-blue hover:text-snow-white"
+          >
+            {isStaffMode ? 'Exit Staff Mode' : 'Staff Mode (Demo)'}
+          </Button>
         </div>
       </div>
     </section>

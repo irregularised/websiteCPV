@@ -1,185 +1,205 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Award, Star, Trophy, Users, Heart, Calendar } from 'lucide-react';
+import { Award, Users, Calendar, Heart, Star, Trophy, Camera, MapPin } from 'lucide-react';
 
 const RecognitionSection = () => {
-  const achievements = [
+  const socialEvents = [
     {
-      title: "Employee of the Month",
-      recipient: "Sarah Johnson",
-      month: "June 2024",
-      description: "Outstanding dedication to patient care and team collaboration",
-      icon: Star,
-      category: "Monthly Award"
+      id: 1,
+      title: "Annual Care Excellence Awards",
+      date: "December 15, 2024",
+      location: "Grand Hall, City Center",
+      image: "🏆",
+      description: "Celebrating outstanding achievements in care provision and professional development.",
+      attendees: 150
     },
     {
-      title: "Excellence in Training",
-      recipient: "Michael Chen",
-      month: "May 2024",
-      description: "Exceptional contribution to staff development and education",
-      icon: Trophy,
-      category: "Annual Award"
+      id: 2,
+      title: "Spring Team Building Retreat",
+      date: "April 20, 2024",
+      location: "Countryside Resort",
+      image: "🌸",
+      description: "A weekend of team building activities, workshops, and relaxation for our care community.",
+      attendees: 85
     },
     {
-      title: "Team Player Award",
-      recipient: "Care Team Alpha",
-      month: "April 2024",
-      description: "Remarkable teamwork during challenging circumstances",
-      icon: Users,
-      category: "Team Award"
+      id: 3,
+      title: "Professional Development Mixer",
+      date: "March 10, 2024",
+      location: "Conference Center",
+      image: "🤝",
+      description: "Networking event connecting care professionals across different organizations and specialties.",
+      attendees: 120
     }
   ];
 
-  const upcomingEvents = [
+  const awards = [
     {
-      title: "Annual Awards Ceremony",
-      date: "July 15, 2024",
-      time: "6:00 PM",
-      location: "Grand Hall",
-      description: "Celebrating outstanding achievements in care"
+      title: "Outstanding Care Provider 2024",
+      recipient: "Sarah Johnson, RN",
+      category: "Individual Excellence",
+      description: "Recognized for exceptional patient care and mentorship of new care providers."
     },
     {
-      title: "Staff Appreciation BBQ",
-      date: "July 28, 2024",
-      time: "12:00 PM",
-      location: "Community Garden",
-      description: "Casual gathering to celebrate our amazing team"
+      title: "Innovation in Care Award",
+      recipient: "Greenfield Care Home",
+      category: "Organizational Excellence",
+      description: "Leading the way in implementing new care technologies and practices."
     },
     {
-      title: "Disability Awareness Workshop",
-      date: "August 5, 2024",
-      time: "2:00 PM",
-      location: "Training Center",
-      description: "Building inclusive workplace practices"
+      title: "Community Impact Champion",
+      recipient: "Marcus Williams",
+      category: "Community Engagement",
+      description: "Outstanding contribution to disability awareness and community education programs."
+    }
+  ];
+
+  const disabilityResources = [
+    {
+      icon: Heart,
+      title: "Inclusive Workplace Guidelines",
+      description: "Comprehensive resources for creating accessible and inclusive work environments"
+    },
+    {
+      icon: Users,
+      title: "Disability Awareness Training",
+      description: "Interactive training modules to build understanding and empathy in care settings"
+    },
+    {
+      icon: Star,
+      title: "Best Practice Library",
+      description: "Curated collection of successful disability inclusion initiatives and case studies"
     }
   ];
 
   return (
-    <section id="recognition" className="py-20 bg-gradient-to-br from-pale-blue/30 to-pale-pink/50">
+    <section id="recognition" className="py-20 bg-snow-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="w-16 h-16 bg-gradient-to-br from-rose-pink to-mint-green rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <div className="w-16 h-16 bg-gradient-to-br from-rose-pink to-steel-blue rounded-2xl flex items-center justify-center mx-auto mb-6">
             <Award className="w-8 h-8 text-snow-white" />
           </div>
           <h2 className="text-4xl font-bold text-steel-blue mb-4">
             Recognition & Community
           </h2>
           <p className="text-xl text-steel-blue/80 max-w-3xl mx-auto leading-relaxed">
-            Celebrating excellence, fostering community, and promoting awareness in the care industry. 
-            Recognizing outstanding contributions and building inclusive workplace culture.
+            Celebrating excellence in care, fostering community connections, and promoting 
+            inclusive practices that make a difference in people's lives.
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Awards & Recognition */}
-            <div>
-              <h3 className="text-2xl font-bold text-steel-blue mb-8 flex items-center">
-                <Trophy className="w-6 h-6 text-rose-pink mr-3" />
-                Recent Awards
-              </h3>
-              <div className="space-y-6">
-                {achievements.map((achievement, index) => (
-                  <Card key={index} className="bg-snow-white border-pale-blue shadow-lg hover:shadow-xl transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-rose-pink/20 to-mint-green/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                          <achievement.icon className="w-6 h-6 text-rose-pink" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-2">
-                            <h4 className="text-lg font-semibold text-steel-blue">
-                              {achievement.title}
-                            </h4>
-                            <span className="px-3 py-1 bg-mint-green/20 text-mint-green text-xs font-semibold rounded-full">
-                              {achievement.category}
-                            </span>
-                          </div>
-                          <p className="text-rose-pink font-medium mb-1">{achievement.recipient}</p>
-                          <p className="text-steel-blue/80 text-sm mb-2">{achievement.description}</p>
-                          <p className="text-steel-blue/60 text-xs">{achievement.month}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* Social Events & Awareness */}
-            <div>
-              <h3 className="text-2xl font-bold text-steel-blue mb-8 flex items-center">
-                <Calendar className="w-6 h-6 text-rose-pink mr-3" />
-                Upcoming Events
-              </h3>
-              <div className="space-y-6 mb-8">
-                {upcomingEvents.map((event, index) => (
-                  <Card key={index} className="bg-snow-white border-pale-blue shadow-lg hover:shadow-xl transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="flex items-start justify-between mb-3">
-                        <h4 className="text-lg font-semibold text-steel-blue">{event.title}</h4>
-                      </div>
-                      <p className="text-steel-blue/80 text-sm mb-3">{event.description}</p>
-                      <div className="grid grid-cols-2 gap-4 text-sm text-steel-blue/70">
-                        <div>
-                          <span className="font-medium">Date:</span> {event.date}
-                        </div>
-                        <div>
-                          <span className="font-medium">Time:</span> {event.time}
-                        </div>
-                        <div className="col-span-2">
-                          <span className="font-medium">Location:</span> {event.location}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-              {/* Disability Awareness Highlight */}
-              <Card className="bg-gradient-to-br from-steel-blue to-mint-green text-snow-white border-0 shadow-xl">
+        {/* Social Events Section */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold text-steel-blue text-center mb-12">
+            Upcoming Social Events
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {socialEvents.map((event) => (
+              <Card key={event.id} className="bg-snow-white border-pale-blue shadow-lg hover:shadow-xl transition-all duration-300 group">
                 <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Heart className="w-6 h-6 mr-3" />
-                    Disability Awareness Initiative
-                  </CardTitle>
+                  <div className="text-6xl text-center mb-4">{event.image}</div>
+                  <CardTitle className="text-steel-blue text-lg text-center">{event.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-snow-white/90 mb-4">
-                    We're committed to creating an inclusive workplace that supports all individuals. 
-                    Learn about our resources and initiatives for disability awareness and accommodation.
+                <CardContent className="text-center">
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center justify-center space-x-2 text-sm text-steel-blue/80">
+                      <Calendar className="w-4 h-4 text-rose-pink" />
+                      <span>{event.date}</span>
+                    </div>
+                    <div className="flex items-center justify-center space-x-2 text-sm text-steel-blue/80">
+                      <MapPin className="w-4 h-4 text-rose-pink" />
+                      <span>{event.location}</span>
+                    </div>
+                    <div className="flex items-center justify-center space-x-2 text-sm text-steel-blue/80">
+                      <Users className="w-4 h-4 text-mint-green" />
+                      <span>{event.attendees} attending</span>
+                    </div>
+                  </div>
+                  <p className="text-steel-blue/80 text-sm mb-6 leading-relaxed">
+                    {event.description}
                   </p>
-                  <Button className="bg-snow-white text-steel-blue hover:bg-snow-white/90 font-semibold">
-                    Learn More About Our Initiatives
+                  <Button className="w-full bg-rose-pink hover:bg-rose-pink/90 text-snow-white">
+                    Learn More
                   </Button>
                 </CardContent>
               </Card>
-            </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Awards & Recognition Section */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold text-steel-blue text-center mb-12">
+            Recent Awards & Recognition
+          </h3>
+          <div className="max-w-4xl mx-auto space-y-6">
+            {awards.map((award, index) => (
+              <Card key={index} className="bg-gradient-to-r from-pale-pink to-pale-blue/30 border-0 shadow-lg">
+                <CardContent className="p-8">
+                  <div className="flex items-start space-x-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-rose-pink to-mint-green rounded-full flex items-center justify-center flex-shrink-0">
+                      <Trophy className="w-8 h-8 text-snow-white" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <h4 className="text-xl font-bold text-steel-blue">{award.title}</h4>
+                        <span className="px-3 py-1 bg-mint-green/20 text-mint-green text-sm font-semibold rounded-full">
+                          {award.category}
+                        </span>
+                      </div>
+                      <p className="text-lg font-semibold text-rose-pink mb-2">{award.recipient}</p>
+                      <p className="text-steel-blue/80 leading-relaxed">{award.description}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Disability Resources Section */}
+        <div className="max-w-6xl mx-auto">
+          <h3 className="text-2xl font-bold text-steel-blue text-center mb-12">
+            Disability Inclusion Resources
+          </h3>
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {disabilityResources.map((resource, index) => (
+              <Card key={index} className="bg-snow-white border-pale-blue shadow-lg hover:shadow-xl transition-all duration-300 group">
+                <CardHeader className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-mint-green/20 to-steel-blue/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <resource.icon className="w-8 h-8 text-mint-green" />
+                  </div>
+                  <CardTitle className="text-steel-blue text-lg">{resource.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-steel-blue/80 text-sm leading-relaxed">
+                    {resource.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
 
           {/* Call to Action */}
-          <div className="mt-16 text-center">
-            <Card className="bg-snow-white border-pale-blue shadow-xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-steel-blue mb-4">
-                  Nominate Someone for Recognition
-                </h3>
-                <p className="text-steel-blue/80 mb-6 max-w-2xl mx-auto">
-                  Know someone who deserves recognition for their outstanding work or contribution? 
-                  Help us celebrate excellence in our community.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-rose-pink hover:bg-rose-pink/90 text-snow-white font-semibold">
-                    Submit Nomination
-                  </Button>
-                  <Button size="lg" variant="outline" className="border-2 border-steel-blue text-steel-blue hover:bg-steel-blue hover:text-snow-white font-semibold">
-                    View All Awards
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <Card className="bg-gradient-to-r from-steel-blue to-mint-green text-snow-white border-0 shadow-xl">
+            <CardContent className="p-8 text-center">
+              <h3 className="text-3xl font-bold mb-4">Be Part of Our Community</h3>
+              <p className="text-snow-white/90 mb-8 max-w-2xl mx-auto text-lg">
+                Join us in celebrating excellence, building connections, and creating inclusive 
+                environments where everyone can thrive. Your contribution makes a difference.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" className="bg-snow-white text-steel-blue hover:bg-snow-white/90 font-semibold text-lg px-8">
+                  <Camera className="w-5 h-5 mr-2" />
+                  View Gallery
+                </Button>
+                <Button size="lg" variant="outline" className="border-2 border-snow-white text-snow-white hover:bg-snow-white hover:text-steel-blue font-semibold text-lg px-8">
+                  Nominate Someone
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
