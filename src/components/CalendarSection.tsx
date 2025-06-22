@@ -1,14 +1,33 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Calendar, Clock, MapPin, Users, Plus } from 'lucide-react';
 import { useState } from 'react';
 
-const CalendarSection = () => {
-  const [events, setEvents] = useState<any[]>([]);
-  const [isStaffMode, setIsStaffMode] = useState(false);
+interface Event {
+  id: number;
+  title: string;
+  type: 'Training' | 'Update' | 'Meeting';
+  date: string;
+  time: string;
+  location: string;
+  attendees: number;
+}
 
-  // Empty calendar - events will be added by staff only
+const CalendarSection = () => {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [isStaffMode, setIsStaffMode] = useState(false);
+  const [isAddEventOpen, setIsAddEventOpen] = useState(false);
+  const [newEvent, setNewEvent] = useState({
+    title: '',
+    type: 'Training' as Event['type'],
+    date: '',
+    time: '',
+    location: ''
+  });
+
+  // Calendar logic
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
@@ -31,6 +50,25 @@ const CalendarSection = () => {
   for (let day = 1; day <= daysInMonth; day++) {
     calendarDays.push(day);
   }
+
+  const handleAddEvent = () => {
+    if (newEvent.title && newEvent.date && newEvent.time && newEvent.location) {
+      const event: Event = {
+        id: Date.now(),
+        ...newEvent,
+        attendees: 0
+      };
+      setEvents([...events, event]);
+      setNewEvent({
+        title: '',
+        type: 'Training',
+        date: '',
+        time: '',
+        location: ''
+      });
+      setIsAddEventOpen(false);
+    }
+  };
 
   return (
     <section id="calendar" className="py-20 bg-pale-blue/20">
@@ -57,9 +95,73 @@ const CalendarSection = () => {
                       <span>{monthNames[currentMonth]} {currentYear}</span>
                     </div>
                     {isStaffMode && (
-                      <Button size="sm" className="bg-mint-green hover:bg-mint-green/90 text-snow-white">
-                        <Plus className="w-4 h-4" />
-                      </Button>
+                      <Dialog open={isAddEventOpen} onOpenChange={setIsAddEventOpen}>
+                        <DialogTrigger asChild>
+                          <Button size="sm" className="bg-mint-green hover:bg-mint-green/90 text-snow-white">
+                            <Plus className="w-4 h-4" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Add New Event</DialogTitle>
+                          </DialogHeader>
+                          <div className="space-y-4">
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Event Title</label>
+                              <input
+                                type="text"
+                                className="w-full p-2 border rounded"
+                                value={newEvent.title}
+                                onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
+                                placeholder="Enter event title"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Type</label>
+                              <select
+                                className="w-full p-2 border rounded"
+                                value={newEvent.type}
+                                onChange={(e) => setNewEvent({...newEvent, type: e.target.value as Event['type']})}
+                              >
+                                <option value="Training">Training</option>
+                                <option value="Update">Update</option>
+                                <option value="Meeting">Meeting</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Date</label>
+                              <input
+                                type="date"
+                                className="w-full p-2 border rounded"
+                                value={newEvent.date}
+                                onChange={(e) => setNewEvent({...newEvent, date: e.target.value})}
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Time</label>
+                              <input
+                                type="time"
+                                className="w-full p-2 border rounded"
+                                value={newEvent.time}
+                                onChange={(e) => setNewEvent({...newEvent, time: e.target.value})}
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Location</label>
+                              <input
+                                type="text"
+                                className="w-full p-2 border rounded"
+                                value={newEvent.location}
+                                onChange={(e) => setNewEvent({...newEvent, location: e.target.value})}
+                                placeholder="Enter location"
+                              />
+                            </div>
+                            <Button onClick={handleAddEvent} className="w-full bg-rose-pink hover:bg-rose-pink/90 text-snow-white">
+                              Add Event
+                            </Button>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                     )}
                   </CardTitle>
                 </CardHeader>
@@ -101,10 +203,74 @@ const CalendarSection = () => {
                       Our staff will add upcoming events and opportunities here. Check back soon!
                     </p>
                     {isStaffMode && (
-                      <Button className="bg-rose-pink hover:bg-rose-pink/90 text-snow-white">
-                        <Plus className="w-4 h-4 mr-2" />
-                        Add Event
-                      </Button>
+                      <Dialog open={isAddEventOpen} onOpenChange={setIsAddEventOpen}>
+                        <DialogTrigger asChild>
+                          <Button className="bg-rose-pink hover:bg-rose-pink/90 text-snow-white">
+                            <Plus className="w-4 h-4 mr-2" />
+                            Add Event
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Add New Event</DialogTitle>
+                          </DialogHeader>
+                          <div className="space-y-4">
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Event Title</label>
+                              <input
+                                type="text"
+                                className="w-full p-2 border rounded"
+                                value={newEvent.title}
+                                onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
+                                placeholder="Enter event title"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Type</label>
+                              <select
+                                className="w-full p-2 border rounded"
+                                value={newEvent.type}
+                                onChange={(e) => setNewEvent({...newEvent, type: e.target.value as Event['type']})}
+                              >
+                                <option value="Training">Training</option>
+                                <option value="Update">Update</option>
+                                <option value="Meeting">Meeting</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Date</label>
+                              <input
+                                type="date"
+                                className="w-full p-2 border rounded"
+                                value={newEvent.date}
+                                onChange={(e) => setNewEvent({...newEvent, date: e.target.value})}
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Time</label>
+                              <input
+                                type="time"
+                                className="w-full p-2 border rounded"
+                                value={newEvent.time}
+                                onChange={(e) => setNewEvent({...newEvent, time: e.target.value})}
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Location</label>
+                              <input
+                                type="text"
+                                className="w-full p-2 border rounded"
+                                value={newEvent.location}
+                                onChange={(e) => setNewEvent({...newEvent, location: e.target.value})}
+                                placeholder="Enter location"
+                              />
+                            </div>
+                            <Button onClick={handleAddEvent} className="w-full bg-rose-pink hover:bg-rose-pink/90 text-snow-white">
+                              Add Event
+                            </Button>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                     )}
                   </CardContent>
                 </Card>
