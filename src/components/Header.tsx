@@ -2,9 +2,11 @@
 import { useState } from 'react';
 import { Calendar, Home, BookOpen, CreditCard, Award, Users, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navItems = [
     { name: 'Home', icon: Home, href: '#home' },
@@ -12,15 +14,25 @@ const Header = () => {
     { name: 'Learning Hub', icon: BookOpen, href: '#learning' },
     { name: 'Flourish Card', icon: CreditCard, href: '#flourish' },
     { name: 'Recognition', icon: Award, href: '#recognition' },
-    { name: 'Staff Portal', icon: Users, href: '#portal' },
+    { name: 'Staff Portal', icon: Users, action: 'portal' },
   ];
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, action?: string) => {
     setIsMenuOpen(false);
+    
+    if (action === 'portal') {
+      navigate('/staff-login');
+      return;
+    }
+    
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleStaffLogin = () => {
+    navigate('/staff-login');
   };
 
   return (
@@ -43,7 +55,7 @@ const Header = () => {
             {navItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => handleNavClick(item.href)}
+                onClick={() => handleNavClick(item.href || '', item.action)}
                 className="flex items-center space-x-2 text-steel-blue hover:text-rose-pink transition-all duration-200 font-medium group py-2 px-3 rounded-lg hover:bg-pale-blue/30"
               >
                 <item.icon size={18} className="group-hover:scale-110 transition-transform" />
@@ -54,7 +66,10 @@ const Header = () => {
 
           {/* Staff Login Button */}
           <div className="hidden lg:block">
-            <Button className="bg-gradient-to-r from-rose-pink to-rose-pink/90 hover:from-rose-pink/90 hover:to-rose-pink text-snow-white shadow-lg font-semibold px-6">
+            <Button 
+              onClick={handleStaffLogin}
+              className="bg-gradient-to-r from-rose-pink to-rose-pink/90 hover:from-rose-pink/90 hover:to-rose-pink text-snow-white shadow-lg font-semibold px-6"
+            >
               Staff Login
             </Button>
           </div>
@@ -79,7 +94,7 @@ const Header = () => {
               {navItems.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => handleNavClick(item.href)}
+                  onClick={() => handleNavClick(item.href || '', item.action)}
                   className="flex items-center space-x-3 text-steel-blue hover:text-rose-pink transition-colors duration-200 font-medium py-3 px-4 rounded-lg hover:bg-pale-blue/30 text-left"
                 >
                   <item.icon size={20} />
@@ -87,7 +102,10 @@ const Header = () => {
                 </button>
               ))}
               <div className="pt-4">
-                <Button className="w-full bg-gradient-to-r from-rose-pink to-rose-pink/90 hover:from-rose-pink/90 hover:to-rose-pink text-snow-white shadow-lg font-semibold">
+                <Button 
+                  onClick={handleStaffLogin}
+                  className="w-full bg-gradient-to-r from-rose-pink to-rose-pink/90 hover:from-rose-pink/90 hover:to-rose-pink text-snow-white shadow-lg font-semibold"
+                >
                   Staff Login
                 </Button>
               </div>
