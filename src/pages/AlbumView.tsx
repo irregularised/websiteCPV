@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Upload, X, Download, Heart } from 'lucide-react';
@@ -16,28 +17,19 @@ const AlbumView = () => {
   const [photos, setPhotos] = useState<any[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
-
-  // Sample event data - in a real app, this would come from an API
-  const events = {
-    1: {
-      title: "Annual Care Excellence Awards 2024",
-      date: "December 15, 2024",
-      location: "Grand Hall, City Center",
-    },
-    2: {
-      title: "Professional Development Workshop",
-      date: "November 20, 2024",
-      location: "Training Center",
-    },
-    // Add other events as needed
-  };
-
-  const eventIdNumber = eventId ? parseInt(eventId, 10) : null;
-  const event = eventIdNumber ? events[eventIdNumber as keyof typeof events] : null;
+  const [event, setEvent] = useState<any>(null);
 
   useEffect(() => {
     const staffLoggedIn = localStorage.getItem('staffLoggedIn');
     setIsStaff(!!staffLoggedIn);
+
+    // Load event data from localStorage
+    const savedEvents = localStorage.getItem('gallery-events');
+    if (savedEvents && eventId) {
+      const events = JSON.parse(savedEvents);
+      const currentEvent = events.find((e: any) => e.id === parseInt(eventId));
+      setEvent(currentEvent);
+    }
 
     // Load photos for this event from localStorage
     const savedPhotos = localStorage.getItem(`event-photos-${eventId}`);
