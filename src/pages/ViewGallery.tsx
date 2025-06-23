@@ -168,7 +168,11 @@ const ViewGallery = () => {
                 </p>
 
                 <div className="flex gap-2">
-                  <Button size="sm" className="flex-1 bg-steel-blue hover:bg-steel-blue/90 text-snow-white">
+                  <Button 
+                    size="sm" 
+                    className="flex-1 bg-steel-blue hover:bg-steel-blue/90 text-snow-white"
+                    onClick={() => navigate(`/gallery/album/${item.id}`)}
+                  >
                     View Full Album
                   </Button>
                   <Button size="sm" variant="outline" className="border-mint-green text-mint-green hover:bg-mint-green/10">
