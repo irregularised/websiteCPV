@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Upload, X, Download, Heart } from 'lucide-react';
@@ -33,7 +32,8 @@ const AlbumView = () => {
     // Add other events as needed
   };
 
-  const event = events[eventId as keyof typeof events];
+  const eventIdNumber = eventId ? parseInt(eventId, 10) : null;
+  const event = eventIdNumber ? events[eventIdNumber as keyof typeof events] : null;
 
   useEffect(() => {
     const staffLoggedIn = localStorage.getItem('staffLoggedIn');
