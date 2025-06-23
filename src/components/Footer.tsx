@@ -4,10 +4,9 @@ import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ExternalLi
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Instagram, href: '#', label: 'Instagram' }
+    { icon: Facebook, href: 'https://www.facebook.com/cpvnel/', label: 'Facebook' },
+    { icon: Linkedin, href: 'https://uk.linkedin.com/company/cpvnel', label: 'LinkedIn' },
+    { icon: Instagram, href: 'https://www.instagram.com/cpvnel/', label: 'Instagram' }
   ];
 
   const quickLinks = [
@@ -19,7 +18,7 @@ const Footer = () => {
   ];
 
   const resources = [
-    { title: 'FLOURISH E-Learning', href: '#' },
+    { title: 'FLOURISH E-Learning', href: 'https://flourish.co.uk/bundles/adult-care-leadership/?utm_source=Google&utm_medium=Google&utm_campaign=adults+leadership&gad_source=1&gad_campaignid=21724141628&gbraid=0AAAAA-IBY2MGG86F4U-BRUgCIHqLqnaMW&gclid=CjwKCAjw9uPCBhATEiwABHN9K_7jw8p4SbAPU2T2sCKQQ9UFru9O0ZugWsSw2cmy9yNzheNyU_qkHhoCvi8QAvD_BwE' },
     { title: 'Canvas Portal', href: '#', external: true },
     { title: 'Training Materials', href: '#' },
     { title: 'Career Support', href: '#' },
@@ -114,7 +113,7 @@ const Footer = () => {
                 <div>
                   <p className="text-snow-white/80 text-sm">Email</p>
                   <a href="mailto:info@careconnect.com" className="text-snow-white hover:text-rose-pink transition-colors">
-                    info@careconnect.com
+                    hello@cpvnel.co.uk
                   </a>
                 </div>
               </div>
@@ -123,7 +122,7 @@ const Footer = () => {
                 <div>
                   <p className="text-snow-white/80 text-sm">Phone</p>
                   <a href="tel:+1234567890" className="text-snow-white hover:text-rose-pink transition-colors">
-                    (123) 456-7890
+                    07752 799 952
                   </a>
                 </div>
               </div>
@@ -132,8 +131,12 @@ const Footer = () => {
                 <div>
                   <p className="text-snow-white/80 text-sm">Address</p>
                   <p className="text-snow-white">
-                    123 Care Street<br />
-                    Community City, CC 12345
+                    5th Floor Front,<br />
+                    London Borough Redbridge Council Office,<br />
+                    Lynton House,<br />
+                    255-259 High Road,<br />
+                    llford,<br />
+                    IG1 1NY
                   </p>
                 </div>
               </div>
@@ -165,7 +168,7 @@ const Footer = () => {
         <div className="py-6 border-t border-snow-white/20 flex flex-col md:flex-row justify-between items-center text-sm text-snow-white/60">
           <p>&copy; 2024 CareConnect. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-snow-white transition-colors">Privacy Policy</a>
+            <a href="https://cpvnel.co.uk/assets/img/cpvassets/CareProvidersVoicePrivacyNoticev2260923.pdf" className="hover:text-snow-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-snow-white transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-snow-white transition-colors">Accessibility</a>
           </div>
