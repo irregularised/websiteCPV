@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import StaffLogin from "./pages/StaffLogin";
 import StaffPortal from "./pages/StaffPortal";
 import ViewGallery from "./pages/ViewGallery";
+import AlbumView from "./pages/AlbumView";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +23,7 @@ const App = () => (
           <Route path="/staff-login" element={<StaffLogin />} />
           <Route path="/staff-portal" element={<StaffPortal />} />
           <Route path="/gallery" element={<ViewGallery />} />
+          <Route path="/gallery/album/:eventId" element={<AlbumView />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
