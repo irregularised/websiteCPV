@@ -166,7 +166,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="py-6 border-t border-snow-white/20 flex flex-col md:flex-row justify-between items-center text-sm text-snow-white/60">
-          <p>&copy; 2024 CareConnect. All rights reserved.</p>
+          <p>&copy; 2024 Intelligent Working. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="https://cpvnel.co.uk/assets/img/cpvassets/CareProvidersVoicePrivacyNoticev2260923.pdf" className="hover:text-snow-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-snow-white transition-colors">Terms of Service</a>
