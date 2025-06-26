@@ -56,13 +56,20 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Brand colors
-				'rose-pink': '#EF5A8F',
-				'steel-blue': '#336B81',
-				'pale-pink': '#FBE1EB',
-				'pale-blue': '#BBDFD5',
-				'mint-green': '#71BF96',
-				'snow-white': '#FEFCFA',
+				// Brand colors - Updated for WCAG 2.1 compliance
+				'cpv-blue': '#2563eb', /* blue-600 - accessible primary */
+				'cpv-pink': '#ec4899', /* pink-500 - accessible accent */
+				'cpv-teal': '#10b981', /* emerald-500 - accessible secondary */
+				'cpv-slate': '#475569', /* slate-600 - accessible text */
+				'cpv-light': '#f8fafc', /* slate-50 - light background */
+				'cpv-dark': '#0f172a', /* slate-900 - dark text */
+				// Legacy colors for backward compatibility
+				'rose-pink': '#ec4899',
+				'steel-blue': '#2563eb',
+				'pale-pink': '#fdf2f8',
+				'pale-blue': '#e0f2fe',
+				'mint-green': '#10b981',
+				'snow-white': '#fefcfa',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

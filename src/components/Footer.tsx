@@ -33,22 +33,20 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-steel-blue text-snow-white">
+    <footer className="bg-cpv-dark text-white">
       <div className="container mx-auto px-4">
         {/* Main Footer Content */}
         <div className="py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-rose-pink via-mint-green to-snow-white rounded-xl flex items-center justify-center">
-                <span className="text-steel-blue font-bold text-xl">C</span>
-              </div>
-              <div>
-                <span className="text-2xl font-bold">CareConnect</span>
-                <p className="text-xs text-snow-white/60 -mt-1">Professional Platform</p>
-              </div>
+              <img 
+                src="/lovable-uploads/d488fd27-700d-44c8-ba4e-a22bdbd85773.png" 
+                alt="Care Providers' Voice Logo" 
+                className="h-12 w-auto"
+              />
             </div>
-            <p className="text-snow-white/80 mb-6 leading-relaxed">
+            <p className="text-gray-300 mb-6 leading-relaxed">
               Connecting care providers and candidates through educational excellence, 
               professional development, and community engagement.
             </p>
@@ -58,7 +56,7 @@ const Footer = () => {
                   key={social.label}
                   size="sm"
                   variant="outline"
-                  className="border-snow-white/30 text-snow-white hover:bg-snow-white hover:text-steel-blue p-2"
+                  className="border-gray-400 text-white hover:bg-white hover:text-cpv-dark p-2 focus:ring-2 focus:ring-cpv-blue focus:ring-offset-2"
                   asChild
                 >
                   <a href={social.href} aria-label={social.label}>
@@ -71,13 +69,13 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-6">Quick Links</h3>
+            <h3 className="font-bold text-lg mb-6 text-white">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.title}>
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-snow-white/80 hover:text-snow-white transition-colors text-left"
+                    className="text-gray-300 hover:text-white transition-colors text-left focus:outline-none focus:underline"
                   >
                     {link.title}
                   </button>
@@ -88,13 +86,13 @@ const Footer = () => {
 
           {/* Resources */}
           <div>
-            <h3 className="font-bold text-lg mb-6">Resources</h3>
+            <h3 className="font-bold text-lg mb-6 text-white">Resources</h3>
             <ul className="space-y-3">
               {resources.map((resource) => (
                 <li key={resource.title}>
                   <a
                     href={resource.href}
-                    className="text-snow-white/80 hover:text-snow-white transition-colors flex items-center space-x-2"
+                    className="text-gray-300 hover:text-white transition-colors flex items-center space-x-2 focus:outline-none focus:underline"
                   >
                     <span>{resource.title}</span>
                     {resource.external && <ExternalLink className="w-3 h-3" />}
@@ -106,31 +104,31 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-bold text-lg mb-6">Contact Us</h3>
+            <h3 className="font-bold text-lg mb-6 text-white">Contact Us</h3>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-rose-pink flex-shrink-0" />
+                <Mail className="w-5 h-5 text-cpv-pink flex-shrink-0" />
                 <div>
-                  <p className="text-snow-white/80 text-sm">Email</p>
-                  <a href="mailto:info@careconnect.com" className="text-snow-white hover:text-rose-pink transition-colors">
+                  <p className="text-gray-300 text-sm">Email</p>
+                  <a href="mailto:hello@cpvnel.co.uk" className="text-white hover:text-cpv-pink transition-colors focus:outline-none focus:underline">
                     hello@cpvnel.co.uk
                   </a>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-rose-pink flex-shrink-0" />
+                <Phone className="w-5 h-5 text-cpv-pink flex-shrink-0" />
                 <div>
-                  <p className="text-snow-white/80 text-sm">Phone</p>
-                  <a href="tel:+1234567890" className="text-snow-white hover:text-rose-pink transition-colors">
+                  <p className="text-gray-300 text-sm">Phone</p>
+                  <a href="tel:07752799952" className="text-white hover:text-cpv-pink transition-colors focus:outline-none focus:underline">
                     07752 799 952
                   </a>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-rose-pink flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-cpv-pink flex-shrink-0" />
                 <div>
-                  <p className="text-snow-white/80 text-sm">Address</p>
-                  <p className="text-snow-white">
+                  <p className="text-gray-300 text-sm">Address</p>
+                  <p className="text-white">
                     5th Floor Front,<br />
                     London Borough Redbridge Council Office,<br />
                     Lynton House,<br />
@@ -145,19 +143,20 @@ const Footer = () => {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="py-8 border-t border-snow-white/20">
+        <div className="py-8 border-t border-gray-700">
           <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-xl font-bold mb-4">Stay Updated</h3>
-            <p className="text-snow-white/80 mb-6">
+            <h3 className="text-xl font-bold mb-4 text-white">Stay Updated</h3>
+            <p className="text-gray-300 mb-6">
               Subscribe to receive the latest updates on courses, events, and opportunities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="px-4 py-3 rounded-lg bg-snow-white/10 border border-snow-white/20 text-snow-white placeholder-snow-white/60 focus:outline-none focus:border-rose-pink flex-1 max-w-md"
+                className="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-cpv-blue focus:ring-2 focus:ring-cpv-blue flex-1 max-w-md"
+                aria-label="Email address for newsletter subscription"
               />
-              <Button className="bg-rose-pink hover:bg-rose-pink/90 text-snow-white px-8">
+              <Button className="bg-cpv-blue hover:bg-blue-700 text-white px-8 focus:ring-2 focus:ring-blue-300 focus:ring-offset-2">
                 Subscribe
               </Button>
             </div>
@@ -165,12 +164,12 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-snow-white/20 flex flex-col md:flex-row justify-between items-center text-sm text-snow-white/60">
+        <div className="py-6 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <p>&copy; 2024 Intelligent Working. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="https://cpvnel.co.uk/assets/img/cpvassets/CareProvidersVoicePrivacyNoticev2260923.pdf" className="hover:text-snow-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-snow-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-snow-white transition-colors">Accessibility</a>
+            <a href="https://cpvnel.co.uk/assets/img/cpvassets/CareProvidersVoicePrivacyNoticev2260923.pdf" className="hover:text-white transition-colors focus:outline-none focus:underline">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors focus:outline-none focus:underline">Terms of Service</a>
+            <a href="#" className="hover:text-white transition-colors focus:outline-none focus:underline">Accessibility</a>
           </div>
         </div>
       </div>

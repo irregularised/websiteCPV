@@ -8,32 +8,32 @@
 @layer base {
   :root {
     --background: 254 252 250; /* snow-white */
-    --foreground: 51 107 129; /* steel-blue */
+    --foreground: 37 99 235; /* blue-600 - improved contrast */
 
     --card: 254 252 250;
-    --card-foreground: 51 107 129;
+    --card-foreground: 37 99 235;
 
     --popover: 254 252 250;
-    --popover-foreground: 51 107 129;
+    --popover-foreground: 37 99 235;
 
-    --primary: 239 90 143; /* rose-pink */
-    --primary-foreground: 254 252 250;
+    --primary: 37 99 235; /* blue-600 - WCAG compliant */
+    --primary-foreground: 255 255 255; /* white for better contrast */
 
-    --secondary: 187 223 213; /* pale-blue */
-    --secondary-foreground: 51 107 129;
+    --secondary: 148 163 184; /* slate-400 - improved contrast */
+    --secondary-foreground: 15 23 42; /* slate-900 for high contrast */
 
-    --muted: 251 225 235; /* pale-pink */
-    --muted-foreground: 51 107 129;
+    --muted: 241 245 249; /* slate-100 */
+    --muted-foreground: 71 85 105; /* slate-600 */
 
-    --accent: 113 191 150; /* mint-green */
-    --accent-foreground: 254 252 250;
+    --accent: 16 185 129; /* emerald-500 - WCAG compliant green */
+    --accent-foreground: 255 255 255;
 
-    --destructive: 239 90 143;
-    --destructive-foreground: 254 252 250;
+    --destructive: 220 38 38; /* red-600 - WCAG compliant */
+    --destructive-foreground: 255 255 255;
 
-    --border: 187 223 213;
-    --input: 187 223 213;
-    --ring: 239 90 143;
+    --border: 226 232 240; /* slate-200 */
+    --input: 226 232 240;
+    --ring: 37 99 235;
 
     --radius: 0.75rem;
   }
@@ -49,7 +49,7 @@
 
 @layer components {
   .gradient-bg {
-    background: linear-gradient(135deg, #336B81 0%, #71BF96 50%, #EF5A8F 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #10b981 50%, #1e40af 100%);
   }
   
   .glass-effect {

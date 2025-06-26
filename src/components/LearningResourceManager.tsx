@@ -58,50 +58,58 @@ export const LearningResourceManager = ({ open, onOpenChange, onResourceAdded }:
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-white">
+      <DialogContent className="bg-white border-gray-200">
         <DialogHeader>
-          <DialogTitle className="text-gray-900">Upload Learning Resource</DialogTitle>
+          <DialogTitle className="text-cpv-dark text-xl font-semibold">Upload Learning Resource</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="title" className="text-gray-700">Title</Label>
+            <Label htmlFor="title" className="text-cpv-dark font-medium">Title</Label>
             <Input
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="mt-1 border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+              className="mt-1 border-gray-300 focus:border-cpv-blue focus:ring-cpv-blue"
+              aria-describedby="title-error"
+              required
             />
           </div>
           <div>
-            <Label htmlFor="description" className="text-gray-700">Description</Label>
+            <Label htmlFor="description" className="text-cpv-dark font-medium">Description</Label>
             <Textarea
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="mt-1 border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+              className="mt-1 border-gray-300 focus:border-cpv-blue focus:ring-cpv-blue"
+              aria-describedby="description-error"
+              required
             />
           </div>
           <div>
-            <Label htmlFor="file" className="text-gray-700">File (optional)</Label>
+            <Label htmlFor="file" className="text-cpv-dark font-medium">File (optional)</Label>
             <Input
               id="file"
               type="file"
               onChange={(e) => setFile(e.target.files?.[0] || null)}
-              className="mt-1 border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+              className="mt-1 border-gray-300 focus:border-cpv-blue focus:ring-cpv-blue"
+              aria-describedby="file-help"
             />
+            <p id="file-help" className="text-sm text-cpv-slate mt-1">
+              Accepted formats: PDF, DOC, DOCX, PPT, PPTX (max 10MB)
+            </p>
           </div>
-          <div className="flex justify-end space-x-2">
+          <div className="flex justify-end space-x-2 pt-4">
             <Button
               type="button"
               variant="outline"
               onClick={() => onOpenChange(false)}
-              className="border-gray-300 text-gray-700 hover:bg-gray-50"
+              className="border-gray-300 text-cpv-slate hover:bg-gray-50 focus:ring-2 focus:ring-gray-300"
             >
               Cancel
             </Button>
             <Button
               type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-cpv-blue hover:bg-blue-700 text-white focus:ring-2 focus:ring-blue-300 focus:ring-offset-2"
             >
               Upload Resource
             </Button>
