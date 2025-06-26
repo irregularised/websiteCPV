@@ -56,20 +56,20 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Brand colors - Updated for WCAG 2.1 compliance
-				'cpv-blue': '#2563eb', /* blue-600 - accessible primary */
-				'cpv-pink': '#ec4899', /* pink-500 - accessible accent */
-				'cpv-teal': '#10b981', /* emerald-500 - accessible secondary */
-				'cpv-slate': '#475569', /* slate-600 - accessible text */
-				'cpv-light': '#f8fafc', /* slate-50 - light background */
-				'cpv-dark': '#0f172a', /* slate-900 - dark text */
+				// Exact brand colors from your palette
+				'rose-pink': '#F05A8F', /* RGB 240, 90, 143 - HEX #F05A8F */
+				'pale-pink': '#FBE1EB', /* RGB 251, 225, 235 - HEX #FBE1EB */
+				'steel-blue': '#346C81', /* RGB 52, 108, 129 - HEX #346C81 */
+				'pale-blue': '#BBDFD5', /* RGB 187, 223, 213 - HEX #BBDFD5 */
+				'mint-green': '#71BF96', /* RGB 113, 191, 150 - HEX #71BF96 */
+				'snow-white': '#FEFCFA', /* RGB 254, 252, 250 - HEX #FEFCFA */
 				// Legacy colors for backward compatibility
-				'rose-pink': '#ec4899',
-				'steel-blue': '#2563eb',
-				'pale-pink': '#fdf2f8',
-				'pale-blue': '#e0f2fe',
-				'mint-green': '#10b981',
-				'snow-white': '#fefcfa',
+				'cpv-blue': '#346C81',
+				'cpv-pink': '#F05A8F',
+				'cpv-teal': '#71BF96',
+				'cpv-slate': '#346C81',
+				'cpv-light': '#FEFCFA',
+				'cpv-dark': '#346C81',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

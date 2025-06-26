@@ -34,7 +34,7 @@ const HeroSection = () => {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-snow-white mb-8 animate-fade-in">
             Welcome to
             <span className="block bg-gradient-to-r from-snow-white via-pale-pink to-mint-green bg-clip-text text-transparent mt-2">
-              CareConnect
+              Care Providers' Voice
             </span>
           </h1>
           
