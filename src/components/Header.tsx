@@ -41,13 +41,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-rose-pink via-mint-green to-steel-blue rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-snow-white font-bold text-xl">C</span>
-            </div>
-            <div>
-              <span className="text-2xl font-bold text-steel-blue">CareConnect</span>
-              <p className="text-xs text-steel-blue/60 -mt-1">Professional Platform</p>
-            </div>
+            <img 
+              src="/lovable-uploads/0e3b524e-6455-430a-a29c-380af7aad7ff.png" 
+              alt="Care Providers' Voice Logo" 
+              className="h-12 w-auto"
+            />
           </div>
 
           {/* Desktop Navigation */}
@@ -68,7 +66,7 @@ const Header = () => {
           <div className="hidden lg:block">
             <Button 
               onClick={handleStaffLogin}
-              className="bg-gradient-to-r from-rose-pink to-rose-pink/90 hover:from-rose-pink/90 hover:to-rose-pink text-snow-white shadow-lg font-semibold px-6"
+              className="bg-steel-blue hover:bg-steel-blue/90 text-snow-white shadow-lg font-semibold px-6"
             >
               Staff Login
             </Button>
@@ -104,7 +102,7 @@ const Header = () => {
               <div className="pt-4">
                 <Button 
                   onClick={handleStaffLogin}
-                  className="w-full bg-gradient-to-r from-rose-pink to-rose-pink/90 hover:from-rose-pink/90 hover:to-rose-pink text-snow-white shadow-lg font-semibold"
+                  className="w-full bg-steel-blue hover:bg-steel-blue/90 text-snow-white shadow-lg font-semibold"
                 >
                   Staff Login
                 </Button>

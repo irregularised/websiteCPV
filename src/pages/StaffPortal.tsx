@@ -3,16 +3,18 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Users, Calendar, BookOpen, Award, LogOut, Plus, Settings, FileText, BarChart } from 'lucide-react';
+import { Users, Calendar, BookOpen, Award, LogOut, Plus, Settings, FileText, BarChart, Mail } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useStaffStats } from '@/hooks/useStaffStats';
 import { CareProviderManager } from '@/components/CareProviderManager';
 import { LearningResourceManager } from '@/components/LearningResourceManager';
+import { NewsletterManager } from '@/components/NewsletterManager';
 
 const StaffPortal = () => {
   const [staffEmail, setStaffEmail] = useState('');
   const [showProviderDialog, setShowProviderDialog] = useState(false);
   const [showResourceDialog, setShowResourceDialog] = useState(false);
+  const [showNewsletterDialog, setShowNewsletterDialog] = useState(false);
   const navigate = useNavigate();
   const { stats, updateStats } = useStaffStats();
 
@@ -41,28 +43,28 @@ const StaffPortal = () => {
       title: 'Active Care Providers', 
       value: stats.activeCareProviders.toString(), 
       icon: Users, 
-      color: 'bg-blue-600',
+      color: 'bg-steel-blue',
       ariaLabel: `${stats.activeCareProviders} active care providers`
     },
     { 
       title: 'Scheduled Events', 
       value: stats.scheduledEvents.toString(), 
       icon: Calendar, 
-      color: 'bg-green-600',
+      color: 'bg-mint-green',
       ariaLabel: `${stats.scheduledEvents} scheduled events`
     },
     { 
       title: 'Learning Resources', 
       value: stats.learningResources.toString(), 
       icon: BookOpen, 
-      color: 'bg-purple-600',
+      color: 'bg-rose-pink',
       ariaLabel: `${stats.learningResources} learning resources`
     },
     { 
       title: 'Recognition Awards', 
       value: stats.recognitionAwards.toString(), 
       icon: Award, 
-      color: 'bg-orange-600',
+      color: 'bg-pale-blue',
       ariaLabel: `${stats.recognitionAwards} recognition awards`
     },
   ];
@@ -71,30 +73,30 @@ const StaffPortal = () => {
     { 
       title: 'Add New Event', 
       icon: Calendar, 
-      color: 'bg-green-600',
+      color: 'bg-mint-green',
       action: () => navigate('/gallery'),
       ariaLabel: 'Navigate to gallery to add new event'
     },
     { 
       title: 'Upload Resources', 
       icon: FileText, 
-      color: 'bg-purple-600',
+      color: 'bg-rose-pink',
       action: () => setShowResourceDialog(true),
       ariaLabel: 'Upload new learning resources'
     },
     { 
       title: 'Manage Users', 
       icon: Users, 
-      color: 'bg-blue-600',
+      color: 'bg-steel-blue',
       action: () => setShowProviderDialog(true),
       ariaLabel: 'Manage care providers'
     },
     { 
-      title: 'View Analytics', 
-      icon: BarChart, 
-      color: 'bg-orange-600',
-      action: () => console.log('Analytics feature coming soon'),
-      ariaLabel: 'View analytics dashboard'
+      title: 'Newsletter', 
+      icon: Mail, 
+      color: 'bg-pale-blue',
+      action: () => setShowNewsletterDialog(true),
+      ariaLabel: 'Manage newsletters'
     },
   ];
 
@@ -106,24 +108,26 @@ const StaffPortal = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-snow-white">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-snow-white shadow-sm border-b border-pale-blue/50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">C</span>
-              </div>
+              <img 
+                src="/lovable-uploads/0e3b524e-6455-430a-a29c-380af7aad7ff.png" 
+                alt="Care Providers' Voice Logo" 
+                className="h-12 w-auto"
+              />
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Staff Portal</h1>
-                <p className="text-sm text-gray-600">Welcome back, {staffEmail}</p>
+                <h1 className="text-2xl font-bold text-steel-blue">Staff Portal</h1>
+                <p className="text-sm text-steel-blue/70">Welcome back, {staffEmail}</p>
               </div>
             </div>
             <Button
               onClick={handleLogout}
               variant="outline"
-              className="text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-gray-900 focus:ring-2 focus:ring-blue-500"
+              className="text-steel-blue border-steel-blue/30 hover:bg-steel-blue/10 hover:text-steel-blue focus:ring-2 focus:ring-steel-blue"
               aria-label="Logout from staff portal"
             >
               <LogOut className="w-4 h-4 mr-2" />
@@ -137,15 +141,15 @@ const StaffPortal = () => {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {statsData.map((stat, index) => (
-            <Card key={index} className="bg-white shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+            <Card key={index} className="bg-snow-white shadow-md border border-pale-blue/30 hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-600 text-sm font-medium" id={`stat-${index}-label`}>
+                    <p className="text-steel-blue/70 text-sm font-medium" id={`stat-${index}-label`}>
                       {stat.title}
                     </p>
                     <p 
-                      className="text-3xl font-bold text-gray-900 mt-2"
+                      className="text-3xl font-bold text-steel-blue mt-2"
                       aria-labelledby={`stat-${index}-label`}
                       aria-describedby={`stat-${index}-description`}
                     >
@@ -156,7 +160,7 @@ const StaffPortal = () => {
                     </span>
                   </div>
                   <div className={`w-12 h-12 ${stat.color} rounded-lg flex items-center justify-center`}>
-                    <stat.icon className="w-6 h-6 text-white" aria-hidden="true" />
+                    <stat.icon className="w-6 h-6 text-snow-white" aria-hidden="true" />
                   </div>
                 </div>
               </CardContent>
@@ -167,9 +171,9 @@ const StaffPortal = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Quick Actions */}
           <div className="lg:col-span-2">
-            <Card className="bg-white shadow-md border border-gray-200">
+            <Card className="bg-snow-white shadow-md border border-pale-blue/30">
               <CardHeader>
-                <CardTitle className="text-gray-900 flex items-center">
+                <CardTitle className="text-steel-blue flex items-center">
                   <Settings className="w-5 h-5 mr-2" aria-hidden="true" />
                   Quick Actions
                 </CardTitle>
@@ -181,13 +185,13 @@ const StaffPortal = () => {
                       key={index}
                       variant="outline"
                       onClick={action.action}
-                      className="h-20 flex flex-col items-center justify-center border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="h-20 flex flex-col items-center justify-center border-2 border-pale-blue/50 hover:border-steel-blue hover:bg-steel-blue/5 focus:ring-2 focus:ring-steel-blue focus:border-steel-blue"
                       aria-label={action.ariaLabel}
                     >
                       <div className={`w-8 h-8 ${action.color} rounded-lg flex items-center justify-center mb-2`}>
-                        <action.icon className="w-4 h-4 text-white" aria-hidden="true" />
+                        <action.icon className="w-4 h-4 text-snow-white" aria-hidden="true" />
                       </div>
-                      <span className="text-sm font-medium text-gray-900">{action.title}</span>
+                      <span className="text-sm font-medium text-steel-blue">{action.title}</span>
                     </Button>
                   ))}
                 </div>
@@ -195,46 +199,49 @@ const StaffPortal = () => {
             </Card>
 
             {/* Platform Management */}
-            <Card className="bg-white shadow-md border border-gray-200 mt-6">
+            <Card className="bg-snow-white shadow-md border border-pale-blue/30 mt-6">
               <CardHeader>
-                <CardTitle className="text-gray-900">Platform Management</CardTitle>
+                <CardTitle className="text-steel-blue">Platform Management</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-mint-green/10 border border-mint-green/30 rounded-lg">
                   <div>
-                    <h4 className="font-semibold text-gray-900">Calendar Events</h4>
-                    <p className="text-sm text-gray-600">Manage training sessions and meetings</p>
+                    <h4 className="font-semibold text-steel-blue">Calendar Events</h4>
+                    <p className="text-sm text-steel-blue/70">Manage training sessions and meetings</p>
                   </div>
                   <Button 
                     onClick={() => navigate('/gallery')}
-                    className="bg-green-600 hover:bg-green-700 text-white focus:ring-2 focus:ring-green-500"
+                    className="bg-mint-green hover:bg-mint-green/90 text-steel-blue font-semibold focus:ring-2 focus:ring-mint-green"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     Add Event
                   </Button>
                 </div>
                 
-                <div className="flex items-center justify-between p-4 bg-purple-50 border border-purple-200 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-rose-pink/10 border border-rose-pink/30 rounded-lg">
                   <div>
-                    <h4 className="font-semibold text-gray-900">Learning Resources</h4>
-                    <p className="text-sm text-gray-600">Upload training materials and documents</p>
+                    <h4 className="font-semibold text-steel-blue">Learning Resources</h4>
+                    <p className="text-sm text-steel-blue/70">Upload training materials and documents</p>
                   </div>
                   <Button 
                     onClick={() => setShowResourceDialog(true)}
-                    className="bg-purple-600 hover:bg-purple-700 text-white focus:ring-2 focus:ring-purple-500"
+                    className="bg-rose-pink hover:bg-rose-pink/90 text-snow-white font-semibold focus:ring-2 focus:ring-rose-pink"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     Upload
                   </Button>
                 </div>
                 
-                <div className="flex items-center justify-between p-4 bg-orange-50 border border-orange-200 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-pale-blue/20 border border-pale-blue/50 rounded-lg">
                   <div>
-                    <h4 className="font-semibold text-gray-900">Recognition Program</h4>
-                    <p className="text-sm text-gray-600">Manage awards and achievements</p>
+                    <h4 className="font-semibold text-steel-blue">Newsletter Management</h4>
+                    <p className="text-sm text-steel-blue/70">Create and send newsletters to subscribers</p>
                   </div>
-                  <Button className="bg-orange-600 hover:bg-orange-700 text-white focus:ring-2 focus:ring-orange-500">
-                    <Award className="w-4 h-4 mr-2" />
+                  <Button 
+                    onClick={() => setShowNewsletterDialog(true)}
+                    className="bg-steel-blue hover:bg-steel-blue/90 text-snow-white font-semibold focus:ring-2 focus:ring-steel-blue"
+                  >
+                    <Mail className="w-4 h-4 mr-2" />
                     Manage
                   </Button>
                 </div>
@@ -244,20 +251,20 @@ const StaffPortal = () => {
 
           {/* Recent Activity */}
           <div>
-            <Card className="bg-white shadow-md border border-gray-200">
+            <Card className="bg-snow-white shadow-md border border-pale-blue/30">
               <CardHeader>
-                <CardTitle className="text-gray-900">Recent Activity</CardTitle>
+                <CardTitle className="text-steel-blue">Recent Activity</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {recentActivity.map((activity, index) => (
-                    <div key={index} className="flex items-start space-x-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
-                      <div className="w-2 h-2 bg-green-600 rounded-full mt-2" aria-hidden="true"></div>
+                    <div key={index} className="flex items-start space-x-3 p-3 bg-pale-blue/10 border border-pale-blue/30 rounded-lg">
+                      <div className="w-2 h-2 bg-mint-green rounded-full mt-2" aria-hidden="true"></div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900">{activity.action}</p>
-                        <p className="text-xs text-gray-600">{activity.time}</p>
+                        <p className="text-sm font-medium text-steel-blue">{activity.action}</p>
+                        <p className="text-xs text-steel-blue/70">{activity.time}</p>
                       </div>
-                      <Badge variant="outline" className="text-xs border-gray-300 text-gray-700">
+                      <Badge variant="outline" className="text-xs border-pale-blue/50 text-steel-blue/70">
                         {activity.type}
                       </Badge>
                     </div>
@@ -265,7 +272,7 @@ const StaffPortal = () => {
                 </div>
                 <Button 
                   variant="outline" 
-                  className="w-full mt-4 text-gray-700 border-gray-300 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500"
+                  className="w-full mt-4 text-steel-blue border-pale-blue/50 hover:bg-steel-blue/5 focus:ring-2 focus:ring-steel-blue"
                 >
                   View All Activity
                 </Button>
@@ -285,6 +292,11 @@ const StaffPortal = () => {
         open={showResourceDialog}
         onOpenChange={setShowResourceDialog}
         onResourceAdded={updateStats}
+      />
+      <NewsletterManager
+        open={showNewsletterDialog}
+        onOpenChange={setShowNewsletterDialog}
+        onNewsletterAdded={updateStats}
       />
     </div>
   );
