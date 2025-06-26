@@ -1,114 +1,126 @@
 
+import { ArrowRight, Calendar, BookOpen, Award, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Calendar, BookOpen, CreditCard, ArrowDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.querySelector(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+
+  const features = [
+    {
+      icon: Calendar,
+      title: 'Event Calendar',
+      description: 'Stay updated with training sessions, meetings, and community events'
+    },
+    {
+      icon: BookOpen,
+      title: 'Learning Hub',
+      description: 'Access professional development resources and training materials'
+    },
+    {
+      icon: Award,
+      title: 'Recognition',
+      description: 'Celebrate excellence and outstanding achievements in care'
+    },
+    {
+      icon: Users,
+      title: 'Community',
+      description: 'Connect with fellow care providers and share experiences'
     }
-  };
+  ];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 gradient-bg"></div>
-      
-      {/* Background pattern overlay */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}></div>
-      </div>
+    <section id="home" className="min-h-screen bg-gradient-to-br from-snow-white via-pale-blue/30 to-mint-green/20 flex items-center">
+      <div className="container mx-auto px-4 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+          {/* Left Column - Content */}
+          <div className="space-y-8">
+            <div className="space-y-6">
+              <h1 className="text-5xl lg:text-6xl font-bold text-steel-blue leading-tight">
+                Empowering
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-pink to-mint-green block">
+                  Care Providers
+                </span>
+                Together
+              </h1>
+              
+              <p className="text-xl text-steel-blue/80 leading-relaxed max-w-xl">
+                A dedicated platform for care professionals to connect, learn, grow, and celebrate 
+                excellence in disability and aged care services.
+              </p>
+            </div>
 
-      <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-8">
-            <div className="inline-flex items-center px-4 py-2 bg-snow-white/20 backdrop-blur-sm rounded-full text-snow-white/90 text-sm font-medium mb-6">
-              <span className="w-2 h-2 bg-mint-green rounded-full mr-2 animate-pulse"></span>
-              Professional Care Platform
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                size="lg" 
+                className="bg-rose-pink hover:bg-rose-pink/90 text-snow-white text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                onClick={() => navigate('/gallery')}
+              >
+                Explore Gallery
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 border-steel-blue text-steel-blue hover:bg-steel-blue hover:text-snow-white text-lg px-8 py-6 rounded-xl transition-all duration-300"
+                onClick={() => {
+                  const element = document.querySelector('#learning');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                Learning Hub
+              </Button>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-steel-blue">500+</div>
+                <div className="text-sm text-steel-blue/70 font-medium">Care Providers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-steel-blue">50+</div>
+                <div className="text-sm text-steel-blue/70 font-medium">Training Sessions</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-steel-blue">25+</div>
+                <div className="text-sm text-steel-blue/70 font-medium">Awards Given</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-steel-blue">100%</div>
+                <div className="text-sm text-steel-blue/70 font-medium">Dedication</div>
+              </div>
             </div>
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-snow-white mb-8 animate-fade-in">
-            Welcome to
-            <span className="block bg-gradient-to-r from-snow-white via-pale-pink to-mint-green bg-clip-text text-transparent mt-2">
-              Care Providers' Voice
-            </span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl lg:text-3xl text-snow-white/90 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
-            Your comprehensive platform connecting care providers and candidates through 
-            educational excellence, professional development, and community engagement.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-            <Button 
-              size="lg" 
-              className="bg-snow-white text-steel-blue hover:bg-snow-white/90 font-semibold text-lg px-8 py-4 shadow-2xl"
-              onClick={() => scrollToSection('#learning')}
-            >
-              Explore Learning Hub
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-2 border-snow-white text-snow-white hover:bg-snow-white hover:text-steel-blue font-semibold text-lg px-8 py-4 backdrop-blur-sm"
-              onClick={() => scrollToSection('#calendar')}
-            >
-              View Calendar
-            </Button>
+          {/* Right Column - Features Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className="bg-snow-white/80 backdrop-blur-sm border border-pale-blue/50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-rose-pink/20 to-mint-green/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <feature.icon className="w-7 h-7 text-steel-blue" />
+                </div>
+                <h3 className="text-lg font-bold text-steel-blue mb-2">{feature.title}</h3>
+                <p className="text-steel-blue/70 text-sm leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
           </div>
+        </div>
 
-          {/* Enhanced feature cards */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-            <div className="glass-effect rounded-2xl p-8 border border-snow-white/20 hover:border-snow-white/40 transition-all duration-300 group hover:scale-105">
-              <Calendar className="w-10 h-10 text-rose-pink mb-6 mx-auto group-hover:scale-110 transition-transform" />
-              <h3 className="font-bold text-steel-blue mb-3 text-lg">Events & Opportunities</h3>
-              <p className="text-steel-blue/80 text-sm leading-relaxed">Stay updated with the latest training sessions, job vacancies, and networking events</p>
-            </div>
-            
-            <div className="glass-effect rounded-2xl p-8 border border-snow-white/20 hover:border-snow-white/40 transition-all duration-300 group hover:scale-105">
-              <BookOpen className="w-10 h-10 text-rose-pink mb-6 mx-auto group-hover:scale-110 transition-transform" />
-              <h3 className="font-bold text-steel-blue mb-3 text-lg">Professional Learning</h3>
-              <p className="text-steel-blue/80 text-sm leading-relaxed">Access FLOURISH courses, Canvas materials, and comprehensive training resources</p>
-            </div>
-            
-            <div className="glass-effect rounded-2xl p-8 border border-snow-white/20 hover:border-snow-white/40 transition-all duration-300 group hover:scale-105">
-              <CreditCard className="w-10 h-10 text-rose-pink mb-6 mx-auto group-hover:scale-110 transition-transform" />
-              <h3 className="font-bold text-steel-blue mb-3 text-lg">Flourish Benefits</h3>
-              <p className="text-steel-blue/80 text-sm leading-relaxed">Unlock exclusive member benefits, priority access, and special opportunities</p>
-            </div>
-          </div>
-
-          {/* Trust indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-8 text-snow-white/60 text-sm">
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-mint-green rounded-full"></div>
-              <span>2,500+ Active Members</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-rose-pink rounded-full"></div>
-              <span>50+ Free Courses</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-pale-blue rounded-full"></div>
-              <span>24/7 Support</span>
-            </div>
+        {/* Bottom CTA */}
+        <div className="text-center mt-20">
+          <div className="inline-flex items-center space-x-2 bg-mint-green/20 text-steel-blue px-6 py-3 rounded-full text-sm font-medium">
+            <span className="w-2 h-2 bg-mint-green rounded-full animate-pulse"></span>
+            <span>Join our community of dedicated care professionals</span>
           </div>
         </div>
       </div>
-
-      {/* Enhanced scroll indicator */}
-      <button 
-        onClick={() => scrollToSection('#calendar')}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:scale-110 transition-transform group"
-      >
-        <div className="w-8 h-12 border-2 border-snow-white/60 rounded-full flex justify-center group-hover:border-snow-white transition-colors">
-          <ArrowDown className="w-4 h-4 text-snow-white/60 mt-2 group-hover:text-snow-white transition-colors" />
-        </div>
-      </button>
     </section>
   );
 };

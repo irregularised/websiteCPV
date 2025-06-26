@@ -9,12 +9,14 @@ import { useStaffStats } from '@/hooks/useStaffStats';
 import { CareProviderManager } from '@/components/CareProviderManager';
 import { LearningResourceManager } from '@/components/LearningResourceManager';
 import { NewsletterManager } from '@/components/NewsletterManager';
+import AwardNominationManager from '@/components/AwardNominationManager';
 
 const StaffPortal = () => {
   const [staffEmail, setStaffEmail] = useState('');
   const [showProviderDialog, setShowProviderDialog] = useState(false);
   const [showResourceDialog, setShowResourceDialog] = useState(false);
   const [showNewsletterDialog, setShowNewsletterDialog] = useState(false);
+  const [showAwardDialog, setShowAwardDialog] = useState(false);
   const navigate = useNavigate();
   const { stats, updateStats } = useStaffStats();
 
@@ -245,6 +247,20 @@ const StaffPortal = () => {
                     Manage
                   </Button>
                 </div>
+
+                <div className="flex items-center justify-between p-4 bg-yellow/10 border border-yellow/30 rounded-lg">
+                  <div>
+                    <h4 className="font-semibold text-steel-blue">Recognition Awards</h4>
+                    <p className="text-sm text-steel-blue/70">Nominate and manage recognition awards</p>
+                  </div>
+                  <Button 
+                    onClick={() => setShowAwardDialog(true)}
+                    className="bg-yellow hover:bg-yellow/90 text-steel-blue font-semibold focus:ring-2 focus:ring-yellow"
+                  >
+                    <Award className="w-4 h-4 mr-2" />
+                    Manage
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -297,6 +313,11 @@ const StaffPortal = () => {
         open={showNewsletterDialog}
         onOpenChange={setShowNewsletterDialog}
         onNewsletterAdded={updateStats}
+      />
+      <AwardNominationManager
+        open={showAwardDialog}
+        onOpenChange={setShowAwardDialog}
+        onAwardAdded={updateStats}
       />
     </div>
   );

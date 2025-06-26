@@ -1,113 +1,44 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { CreditCard, Star, Gift, Users, CheckCircle, ArrowRight } from 'lucide-react';
+import { CreditCard, Gift, Star, Users, Heart, Award } from 'lucide-react';
 
 const FlourishCard = () => {
   const benefits = [
-    {
-      icon: Star,
-      title: "Priority Access",
-      description: "Get first access to new courses and training opportunities"
-    },
-    {
-      icon: Gift,
-      title: "Exclusive Resources",
-      description: "Access members-only materials and advanced learning content"
-    },
-    {
-      icon: Users,
-      title: "Community Network",
-      description: "Connect with fellow professionals and industry experts"
-    },
-    {
-      icon: CheckCircle,
-      title: "Certification Fast-Track",
-      description: "Accelerated pathways to professional certifications"
-    }
-  ];
-
-  const features = [
-    "Free access to all FLOURISH e-learning courses",
-    "Priority booking for training sessions and workshops",
-    "Exclusive job vacancy notifications",
-    "Monthly career development webinars",
-    "Digital badge and certificate system",
-    "24/7 learning platform access"
+    { icon: Gift, title: "Exclusive Discounts", description: "Special offers from partner organizations and local businesses" },
+    { icon: Star, title: "Recognition Rewards", description: "Earn points for outstanding service and professional development" },
+    { icon: Users, title: "Community Access", description: "Priority booking for events, training sessions, and networking opportunities" },
+    { icon: Heart, title: "Wellbeing Support", description: "Access to mental health resources and wellness programs" }
   ];
 
   return (
-    <section id="flourish" className="py-20 bg-gradient-to-br from-snow-white via-white to-pale-blue">
+    <section id="flourish" className="py-20 bg-gradient-to-br from-pale-blue/30 to-snow-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="w-16 h-16 bg-gradient-to-br from-steel-blue to-mint-green rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <CreditCard className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 bg-gradient-to-br from-mint-green to-steel-blue rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <CreditCard className="w-8 h-8 text-snow-white" />
           </div>
           <h2 className="text-4xl font-bold text-steel-blue mb-4">
-            Flourish Card Benefits
+            Flourish Card Program
           </h2>
           <p className="text-xl text-steel-blue/80 max-w-3xl mx-auto leading-relaxed">
-            Unlock exclusive opportunities and accelerate your career in care with our comprehensive 
-            membership program designed specifically for dedicated professionals.
+            A recognition and rewards program designed exclusively for care providers, 
+            celebrating your dedication and supporting your professional journey.
           </p>
         </div>
 
         <div className="max-w-6xl mx-auto">
-          {/* Main Card Display */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <h3 className="text-3xl font-bold text-steel-blue mb-6">
-                Your Gateway to Professional Excellence
-              </h3>
-              <p className="text-lg text-steel-blue/80 mb-8 leading-relaxed">
-                The Flourish Card is more than just membership – it's your key to unlocking a world of 
-                professional development opportunities, exclusive resources, and career advancement tools.
-              </p>
-              
-              <div className="space-y-4 mb-8">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-mint-green flex-shrink-0" />
-                    <span className="text-steel-blue">{feature}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-steel-blue hover:bg-steel-blue/90 text-white font-semibold focus:ring-2 focus:ring-steel-blue/50 focus:ring-offset-2">
-                  Apply for Flourish Card
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-                <Button size="lg" variant="outline" className="border-2 border-steel-blue text-steel-blue hover:bg-steel-blue hover:text-white font-semibold focus:ring-2 focus:ring-steel-blue/50 focus:ring-offset-2">
-                  Learn More
-                </Button>
-              </div>
-            </div>
-
-            {/* Card Visual */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-steel-blue to-mint-green rounded-2xl p-8 text-white shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                <div className="flex items-center justify-between mb-6">
-                  <h4 className="text-2xl font-bold">FLOURISH</h4>
-                  <CreditCard className="w-8 h-8" />
+          {/* Hero Card Display */}
+          <div className="relative mb-16">
+            <div className="bg-gradient-to-r from-rose-pink via-mint-green to-steel-blue p-1 rounded-2xl shadow-2xl max-w-md mx-auto">
+              <div className="bg-snow-white rounded-xl p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-rose-pink to-mint-green rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-8 h-8 text-snow-white" />
                 </div>
-                <div className="mb-6">
-                  <p className="text-white/80 text-sm mb-2">Member Name</p>
-                  <p className="text-xl font-semibold">Care Professional</p>
-                </div>
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="text-white/80">Member Since</p>
-                    <p className="font-semibold">2024</p>
-                  </div>
-                  <div>
-                    <p className="text-white/80">Status</p>
-                    <p className="font-semibold">Active</p>
-                  </div>
-                </div>
-                <div className="mt-6 pt-4 border-t border-white/20">
-                  <p className="text-xs text-white/80">
-                    Your pathway to professional excellence in care
+                <h3 className="text-2xl font-bold text-steel-blue mb-2">Flourish Card</h3>
+                <p className="text-steel-blue/70 mb-4">Care Provider Recognition Program</p>
+                <div className="bg-gradient-to-r from-pale-blue/20 to-mint-green/20 rounded-lg p-4">
+                  <p className="text-sm text-steel-blue/80 font-medium">
+                    Coming Soon - Registration Opens 2025
                   </p>
                 </div>
               </div>
@@ -115,17 +46,17 @@ const FlourishCard = () => {
           </div>
 
           {/* Benefits Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="bg-white border-pale-blue shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <CardHeader className="text-center pb-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-steel-blue/20 to-mint-green/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <Card key={index} className="bg-snow-white border-pale-blue shadow-lg hover:shadow-xl transition-all duration-300 group text-center">
+                <CardHeader>
+                  <div className="w-16 h-16 bg-gradient-to-br from-rose-pink/20 to-mint-green/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                     <benefit.icon className="w-8 h-8 text-steel-blue" />
                   </div>
                   <CardTitle className="text-steel-blue text-lg">{benefit.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-steel-blue/80 text-sm leading-relaxed">
+                <CardContent>
+                  <p className="text-steel-blue/70 text-sm leading-relaxed">
                     {benefit.description}
                   </p>
                 </CardContent>
@@ -133,21 +64,91 @@ const FlourishCard = () => {
             ))}
           </div>
 
+          {/* Program Details */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            <Card className="bg-gradient-to-br from-mint-green/10 to-pale-blue/20 border-mint-green/30 shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-steel-blue text-xl flex items-center">
+                  <Star className="w-6 h-6 mr-3 text-mint-green" />
+                  How It Works
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-mint-green rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-snow-white text-xs font-bold">1</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-steel-blue">Register Your Interest</h4>
+                      <p className="text-steel-blue/70 text-sm">Sign up to be notified when the program launches</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-mint-green rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-snow-white text-xs font-bold">2</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-steel-blue">Earn Recognition</h4>
+                      <p className="text-steel-blue/70 text-sm">Participate in training, events, and community activities</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-mint-green rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-snow-white text-xs font-bold">3</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-steel-blue">Enjoy Benefits</h4>
+                      <p className="text-steel-blue/70 text-sm">Access exclusive discounts, events, and recognition opportunities</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-rose-pink/10 to-pale-blue/20 border-rose-pink/30 shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-steel-blue text-xl flex items-center">
+                  <Heart className="w-6 h-6 mr-3 text-rose-pink" />
+                  Program Values
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-steel-blue mb-1">Recognition</h4>
+                    <p className="text-steel-blue/70 text-sm">Acknowledging the valuable work care providers do every day</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-steel-blue mb-1">Community</h4>
+                    <p className="text-steel-blue/70 text-sm">Building connections and support networks within the care sector</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-steel-blue mb-1">Growth</h4>
+                    <p className="text-steel-blue/70 text-sm">Supporting professional development and career advancement</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-steel-blue mb-1">Wellbeing</h4>
+                    <p className="text-steel-blue/70 text-sm">Promoting mental health and work-life balance for care providers</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
           {/* Call to Action */}
-          <Card className="bg-gradient-to-r from-steel-blue to-mint-green text-white border-0 shadow-xl">
+          <Card className="bg-gradient-to-r from-steel-blue to-mint-green text-snow-white border-0 shadow-xl">
             <CardContent className="p-8 text-center">
-              <h3 className="text-3xl font-bold mb-4">Ready to Flourish?</h3>
-              <p className="text-white/90 mb-8 max-w-2xl mx-auto text-lg">
-                Join our community of dedicated care professionals and take the next step 
-                in your career journey. Applications are reviewed within 48 hours.
+              <h3 className="text-3xl font-bold mb-4">Join the Flourish Community</h3>
+              <p className="text-snow-white/90 mb-8 max-w-2xl mx-auto text-lg">
+                Be among the first to experience the Flourish Card program when it launches. 
+                Register your interest today and help us shape the future of care provider recognition.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-white text-steel-blue hover:bg-white/90 font-semibold text-lg px-8 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-steel-blue">
-                  Start Application
-                </Button>
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-steel-blue font-semibold text-lg px-8 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-steel-blue">
-                  Contact Support
-                </Button>
+              <div className="bg-snow-white/10 backdrop-blur-sm rounded-xl p-6 max-w-md mx-auto">
+                <h4 className="text-xl font-bold mb-2">Coming 2025</h4>
+                <p className="text-snow-white/80 text-sm">
+                  Program development is underway. We'll notify registered users when applications open.
+                </p>
               </div>
             </CardContent>
           </Card>
